@@ -1,75 +1,10 @@
 [source,cypher]
 ----
-create (n:BusinessEntityr {name:'Kumquat::Cars::Extra', attributes:['a', 'b']});
-create (n:BusinessEntity {name:'Kumquat::Cars::CarReservation',attributes:[
-'airline',
-                      'air_conditioning',
-                      'automatic_transmission',
-                      'cancellation_policy',
-                      'car_model',
-                      'car_rental_phone',
-                      'car_rental_reference',
-                      'car_type',
-                      'commission_amount',
-                      'commission_currency',
-                      'commission_currency_id',
-                      'commission_percentage',
-                      'diesel_vehicle',
-                      'doors',
-                      'drop_off_address',
-                      'drop_off_at',
-                      'drop_off_country',
-                      'drop_off_country_id',
-                      'drop_off_location',
-                      'down_payment_amount',
-                      'down_payment_currency',
-                      'down_payment_currency_id',
-                      'flight_number',
-                      'lead_driver_name',
-                      'lead_driver_age',
-                      'manual_transmission',
-                      'max_baggages',
-                      'max_passengers',
-                      'net_value_amount',
-                      'net_value_currency',
-                      'net_value_currency_id',
-                      'number_of_days',
-                      'on_promo',
-                      'pay_at_rental_office_amount',
-                      'pay_at_rental_office_currency',
-                      'pay_at_rental_office_currency_id',
-                      'petrol_vehicle',
-                      'pick_up_address',
-                      'pick_up_at',
-                      'pick_up_country',
-                      'pick_up_country_id',
-                      'pick_up_location',
-                      'rate_per_day_amount',
-                      'rate_per_day_currency',
-                      'rate_per_day_currency_id',
-                      'refundable',
-                      'rental_cost_amount',
-                      'rental_cost_currency',
-                      'rental_cost_currency_id',
-                      'rental_conditions',
-                      'reserved_at',
-                      'reservation_code',
-                      'reservation_id',
-                      'satellite_navigation',
-                      'supplier_name',
-                      'supplier_confirmation',
-                      'supplier_reference',
-                      'total_price_amount',
-                      'total_price_currency',
-                      'total_price_currency_id',
-                      'vendor',
-                      'notes_attributes'
-]});
+create (n:BusinessEntity {name: 'Kumquat::FlightReservation', attributes: ['back_to_back_payments', 'back_to_back_payments_attributes', 'commission_percentage', 'cost_break_down', 'cost_per_baggage', 'cost_per_baggage_currency', 'cost_per_baggage_currency_id', 'flight_passengers', 'flight_passengers_attributes', 'flight_trips', 'flight_trips_attributes', 'gds_type', 'itinerary_id', 'lead_id', 'maximum_baggage_items', 'number_of_baggages', 'notes_attributes', 'office_id', 'payment_options', 'payment_options_attributes', 'payment_type', 'payment_type_id', 'payment_handler', 'payment_handler_id', 'payment_at', 'pnr', 'price', 'price_currency_id', 'price_currency_code', 'price_local', 'price_local_currency_id', 'price_local_currency_code', 'product_attributes', 'paid_price', 'paid_price_currency_id', 'paid_price_currency_code', 'payment_due_at', 'reserved_at', 'spawned_flights', 'spawned_flights_attributes', 'split_flight_id', 'version']});
 
 match (n) return n;
 ----
 
-
-
 //table
+
 //graph
