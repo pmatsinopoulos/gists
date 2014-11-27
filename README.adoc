@@ -1,10 +1,14 @@
-== GraphGists
+= My first Graph Gist
 
 // console
 
 [source,cypher]
 ----
-create (n)
+create (n{name:'Test'})-[:has]->({name:'Foo'}) return n as node;
 ----
 
-This is cool!
+== This is cool!
+
+//table
+
+//graph
