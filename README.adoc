@@ -2,4 +2,9 @@
 
 // console
 
+[source,cypher]
+----
+create (n)
+----
 
+This is cool!
