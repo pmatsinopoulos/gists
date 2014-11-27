@@ -6,7 +6,6 @@ create (n:BusinessEntity {name: 'Kumquat::FlightTrip', attributes: ['flight_rese
 
 match (n:BusinessEntity {name: 'Kumquat::FlightReservation'}),
       (n2:BusinessEntity {name: 'Kumquat::FlightTrip'})
-return n, n2
 create (n)-[:HAS_MANY]->(n2);
 
 match (n) return n;
