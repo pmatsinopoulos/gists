@@ -24,6 +24,8 @@ create (:BusinessEntity {name: 'Kumquat::BackToBackPayment', attributes: ['amoun
 
 create (:BusinessEntity {name: 'Kumquat::PaymentOption', attributes: ['amount', 'amount2', 'flight_reservation', 'flight_reservation_id', 'payment_type', 'payment_type_id', 'name', 'currency_id', 'currency', 'currency2_id', 'currency2', 'payment_reference']});
 
+create (:BusinessEntity {name: 'Kumquat::CommunicationLog', attributes: ['attachments', 'bcc', 'body', 'category', 'category_id', 'case_entity', 'case_entity_id', 'cc', 'exception', 'type', 'type_id', 'from', 'flight_reservation', 'flight_reservation_id', 'person', 'person_id', 'status', 'status_id', 'subject', 'task', 'task_id', 'to']});
+
 // Relatio1nships
 // --------------
 match (n:BusinessEntity {name: 'Kumquat::FlightReservation'}),
@@ -60,6 +62,10 @@ create (n)-[:HAS_MANY]->(n2);
 
 match (n:BusinessEntity {name: 'Kumquat::FlightReservation'}),
       (n2:BusinessEntity {name: 'Kumquat::PaymentOption'})
+create (n)-[:HAS_MANY]->(n2);
+
+match (n:BusinessEntity {name: 'Kumquat::FlightReservation'}),
+      (n2:BusinessEntity {name: 'Kumquat::CommunicationLog'})
 create (n)-[:HAS_MANY]->(n2);
 
 // Return all
