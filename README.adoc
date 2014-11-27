@@ -5,6 +5,7 @@
 [source,cypher]
 ----
 create (n{name:'Test'})-[:has]->({name:'Foo'}) return n as node;
+match (n) return n;
 ----
 
 == This is cool!
