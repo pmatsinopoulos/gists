@@ -12,6 +12,8 @@ create (:BusinessEntity {name: 'Kumquat::FlightPassenger', attributes: ['flight_
 
 create (:BusinessEntity {name: 'Kumquat::Note', attributes: ['note_owner_id', 'note_owner', 'note_owner_type', 'body']});
 
+create (:BusinessEntity {name: 'Kumquat::Invoice', attributes: ['address', 'binary_a', 'binary_b', 'city', 'country', 'customer_code', 'customer_name', 'document_description', 'document_number', 'document_type', 'email', 'fax_1', 'fax_2', 'file_a', 'file_b', 'filename', 'flight_reservation_id', 'invoicee_id', 'invoice_items_attributes', 'invoicee_type', 'issue_date', 'issue_time', 'language_code', 'notes', 'occupation', 'payment_type', 'pnr', 'tax_registration_office', 'telephone_1', 'telephone_2', 'total_net_value', 'total_value', 'total_value_as_text', 'total_value_foreign_currency', 'total_vat_value', 'vat_number', 'version']});
+
 // Relationships
 // --------------
 match (n:BusinessEntity {name: 'Kumquat::FlightReservation'}),
@@ -24,6 +26,10 @@ create (n)-[:HAS_MANY]->(n2);
 
 match (n:BusinessEntity {name: 'Kumquat::FlightReservation'}),
       (n2:BusinessEntity {name: 'Kumquat::Note'})
+create (n)-[:HAS_MANY]->(n2);
+
+match (n:BusinessEntity {name: 'Kumquat::FlightReservation'}),
+      (n2:BusinessEntity {name: 'Kumquat::Invoice'})
 create (n)-[:HAS_MANY]->(n2);
 
 // Return all
