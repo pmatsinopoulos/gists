@@ -10,7 +10,7 @@ create (:BusinessEntity {name: 'Kumquat::FlightTrip', attributes: ['flight_reser
 
 create (:BusinessEntity {name: 'Kumquat::FlightPassenger', attributes: ['flight_reservation_id', 'gender', 'gender_id', 'position', 'passenger_type', 'passenger_type_id', 'first_name', 'last_name', 'birth_date']});
 
-create (:BusinessEntity {name: 'Kumquat::Note', attributes: ['note_owner_id', 'note_owner', 'note_owner_type', 'body']})
+create (:BusinessEntity {name: 'Kumquat::Note', attributes: ['note_owner_id', 'note_owner', 'note_owner_type', 'body']});
 
 // Relationships
 // --------------
@@ -28,6 +28,7 @@ create (n)-[:HAS_MANY]->(n2);
 
 // Return all
 // ----------
+
 match (n) return n;
 ----
 
