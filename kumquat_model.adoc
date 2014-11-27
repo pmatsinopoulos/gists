@@ -1,6 +1,7 @@
 [source,cypher]
 ----
-create (n:BusinessEntity {name:'CarReservation',attributes:[
+create (n:BusinessEntityr {name:'Kumquat::Cars::Extra', attributes:['a', 'b']);
+create (n:BusinessEntity {name:'Kumquat::Cars::CarReservation',attributes:[
 'airline',
                       'air_conditioning',
                       'automatic_transmission',
@@ -63,9 +64,12 @@ create (n:BusinessEntity {name:'CarReservation',attributes:[
                       'total_price_currency_id',
                       'vendor',
                       'notes_attributes'
-]})
-return n;
+]});
+
+match (n) return n;
 ----
+
+
 
 //table
 //graph
