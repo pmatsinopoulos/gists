@@ -63,5 +63,9 @@ create (n:BusinessEntity {name:'CarReservation',attributes:[
                       'total_price_currency_id',
                       'vendor',
                       'notes_attributes'
-]}
+]})
 return n;
+----
+
+//table
+//graph
