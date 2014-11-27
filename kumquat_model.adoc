@@ -1,6 +1,6 @@
 [source,cypher]
 ----
-create (n:BusinessEntityr {name:'Kumquat::Cars::Extra', attributes:['a', 'b']);
+create (n:BusinessEntityr {name:'Kumquat::Cars::Extra', attributes:['a', 'b']});
 create (n:BusinessEntity {name:'Kumquat::Cars::CarReservation',attributes:[
 'airline',
                       'air_conditioning',
