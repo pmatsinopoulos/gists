@@ -1,6 +1,8 @@
 [source,cypher]
 ----
 create (n:BusinessEntity {name: 'Kumquat::FlightReservation', attributes: ['back_to_back_payments', 'back_to_back_payments_attributes', 'commission_percentage', 'cost_break_down', 'cost_per_baggage', 'cost_per_baggage_currency', 'cost_per_baggage_currency_id', 'flight_passengers', 'flight_passengers_attributes', 'flight_trips', 'flight_trips_attributes', 'gds_type', 'itinerary_id', 'lead_id', 'maximum_baggage_items', 'number_of_baggages', 'notes_attributes', 'office_id', 'payment_options', 'payment_options_attributes', 'payment_type', 'payment_type_id', 'payment_handler', 'payment_handler_id', 'payment_at', 'pnr', 'price', 'price_currency_id', 'price_currency_code', 'price_local', 'price_local_currency_id', 'price_local_currency_code', 'product_attributes', 'paid_price', 'paid_price_currency_id', 'paid_price_currency_code', 'payment_due_at', 'reserved_at', 'spawned_flights', 'spawned_flights_attributes', 'split_flight_id', 'version']});
+create (n:BusinessEntity {name: 'Kumquat::FlightTrip', attributes: ['flight_reservation_id', 'position', 'duration_minutes', 'vendor_locator', 'flight_trip_segments', 'flight_trip_segments_attributes', 'version',
+'has_day_change', 'is_red_eye']});
 
 match (n) return n;
 ----
