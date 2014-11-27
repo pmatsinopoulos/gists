@@ -4,6 +4,11 @@ create (n:BusinessEntity {name: 'Kumquat::FlightReservation', attributes: ['back
 create (n:BusinessEntity {name: 'Kumquat::FlightTrip', attributes: ['flight_reservation_id', 'position', 'duration_minutes', 'vendor_locator', 'flight_trip_segments', 'flight_trip_segments_attributes', 'version',
 'has_day_change', 'is_red_eye']});
 
+match (n:BusinessEntity {name: 'Kumquat::FlightReservation'}),
+      (n2:BusinessEntity {name: 'Kumquat::FlightTrip'})
+return n, n2
+create (n)-[:HAS_MANY]->(n2);
+
 match (n) return n;
 ----
 
