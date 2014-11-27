@@ -16,7 +16,9 @@ create (:BusinessEntity {name: 'Kumquat::Invoice', attributes: ['address', 'bina
 
 create (:BusinessEntity {name: 'Kumquat::TradeDocumentDs', attributes: ['document_trade', 'document_trade_id', 'flight_reservation', 'trade_account', 'trade_account_id', 'order_item', 'in_expert', 'ad_code', 'skip_price_check', 'debt_payment_method', 'trade_document_ds_type', 'trade_document_ds_type_id', 'sent_for_invoice', 'bad_xml', 'refunds', 'amount_to_refund', 'amount_to_refund_currency_code', 'secondary_amount', 'refund_date', 'reissues', 'cc_to_carrier', 'refund_code', 'service_fee_amount', 'card_clearance_fee_amount', 'web_discount_amount', 'case_entity_id', 'case_entity', 'task_id', 'task']});
 
-// Relationships
+create (:BusinessEntity {name: 'Kumquat::FlightOriginal', attributes: ['flight_reservation_id', 'original']);
+
+// Relatio1nships
 // --------------
 match (n:BusinessEntity {name: 'Kumquat::FlightReservation'}),
       (n2:BusinessEntity {name: 'Kumquat::FlightTrip'})
@@ -36,6 +38,10 @@ create (n)-[:HAS_MANY]->(n2);
 
 match (n:BusinessEntity {name: 'Kumquat::FlightReservation'}),
       (n2:BusinessEntity {name: 'Kumquat::TradeDocumentDs'})
+create (n)-[:HAS_MANY]->(n2);
+
+match (n:BusinessEntity {name: 'Kumquat::FlightReservation'}),
+      (n2:BusinessEntity {name: 'Kumquat::FlightOriginal'})
 create (n)-[:HAS_MANY]->(n2);
 
 // Return all
