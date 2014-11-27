@@ -18,6 +18,8 @@ create (:BusinessEntity {name: 'Kumquat::TradeDocumentDs', attributes: ['documen
 
 create (:BusinessEntity {name: 'Kumquat::FlightOriginal', attributes: ['flight_reservation_id', 'original']});
 
+create (:BusinessEntity {name: 'Kumquat::PaymentOrder', attributes: ['order', 'order_id', 'payment', 'payment_id', 'order_item', 'order_item_id']});
+
 // Relatio1nships
 // --------------
 match (n:BusinessEntity {name: 'Kumquat::FlightReservation'}),
@@ -42,6 +44,10 @@ create (n)-[:HAS_MANY]->(n2);
 
 match (n:BusinessEntity {name: 'Kumquat::FlightReservation'}),
       (n2:BusinessEntity {name: 'Kumquat::FlightOriginal'})
+create (n)-[:HAS_MANY]->(n2);
+
+match (n:BusinessEntity {name: 'Kumquat::FlightReservation'}),
+      (n2:BusinessEntity {name: 'Kumquat::PaymentOrder'})
 create (n)-[:HAS_MANY]->(n2);
 
 // Return all
