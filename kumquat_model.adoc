@@ -133,6 +133,10 @@ match (n:BusinessEntity {name: 'FlightReservation'}),
       (n2:BusinessEntity {name: 'PaymentHandler'})
 create (n)-[:BELONGS_TO {name: 'payment_handler'}]->(n2);
 
+match (n:BusinessEntity {name: 'FlightReservation'}),
+      (n2:BusinessEntity {name: 'Currency'})
+create (n)-[:BELONGS_TO {name: 'cost_per_baggage_currency'}]->(n2);
+
 match (n:Module {name: 'KumquatModel'}), 
       (n2:BusinessEntity {name: 'FlightReservation'})
 create (n)-[:OWNS]->(n2);
