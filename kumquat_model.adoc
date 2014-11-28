@@ -219,6 +219,10 @@ match (n:BusinessEntity {name: 'OrderItem'}),
       (n2:BusinessEntity {name: 'Currency'})
 create (n)-[:BELONGS_TO {name: 'currency2'}]->(n2);
 
+match (n:BusinessEntity {name: 'OrderItem'}),
+      (n2:BusinessEntity {name: 'PaymentOrder'})
+create (n)-[:HAS_MANY {name: 'payment_orders'}]->(n2);
+
 // KumquatModel
 match (n:Module {name: 'KumquatModel'}), 
       (n2:BusinessEntity {name: 'FlightReservation'})
