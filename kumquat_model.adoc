@@ -47,6 +47,9 @@ create (:BusinessEntity {name: 'PaymentType', attributes: ['code']});
 
 create (:BusinessEntity {name: 'PaymentHandler', attributes: ['code', 'payment_method_gid', 'description']});
 
+// 2nd level of entities
+create (:BusinessEntity {name: 'FlightTripSegment'});
+
 // Relatio1nships
 // --------------
 match (n:BusinessEntity {name: 'FlightReservation'}),
@@ -136,6 +139,11 @@ create (n)-[:BELONGS_TO {name: 'payment_handler'}]->(n2);
 match (n:BusinessEntity {name: 'FlightReservation'}),
       (n2:BusinessEntity {name: 'Currency'})
 create (n)-[:BELONGS_TO {name: 'cost_per_baggage_currency'}]->(n2);
+
+// Flight Trip associations
+match (n:BusinessEntity {name: 'FlightTrip'}),
+      (n2:BusinessEntity {name: 'FlightTripSegment'})
+create (n)-[:HAS_MANY {name: 'flight_trip_segments'}]->(n2);
 
 match (n:Module {name: 'KumquatModel'}), 
       (n2:BusinessEntity {name: 'FlightReservation'})
