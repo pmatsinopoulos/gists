@@ -51,7 +51,9 @@ create (:BusinessEntity {name: 'FlightTripSegment'});
 
 create (:BusinessEntity {name: 'Gender'});
 
-// Relatio1nships
+create (:BusinessEntity {name: 'InvoiceItem', attributes: ['invoice_id', 'ticket_number', 'name', 'carrier', 'routings', 'departure_date', 'return_date', 'price', 'taxes', 'service_fee', 'total_value', 'full_ticket_number', 'discount_value', 'item_description', 'item_description_2', 'hotel_name', 'hotel_address', 'check_in_date', 'check_out_date', 'number_of_nights', 'number_of_rooms', 'qty', 'vat_value', 'net_value', 'payment_method_fee']});
+
+// Relationships
 // --------------
 match (n:BusinessEntity {name: 'FlightReservation'}),
       (n2:BusinessEntity {name: 'FlightTrip'})
@@ -155,8 +157,12 @@ match (n:BusinessEntity {name: 'FlightPassenger'}),
       (n2:BusinessEntity {name: 'FlightDocument'})
 create (n)-[:HAS_MANY {name: 'flight_documents'}]->(n2);
 
-// KumquatModel
+// Invoice
+match (n:BusinessEntity {name: 'Invoice'}),
+      (n2:BusinessEntity {name: 'InvoiceItem'})
+create (n)-[:HAS_MANY {name: 'invoice_items'}]->(n2);      
 
+// KumquatModel
 match (n:Module {name: 'KumquatModel'}), 
       (n2:BusinessEntity {name: 'FlightReservation'})
 create (n)-[:OWNS]->(n2);
