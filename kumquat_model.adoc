@@ -41,6 +41,8 @@ create (:BusinessEntity {name: 'Product', attributes: ['contact', 'details', 'de
 
 create (:BusinessEntity {name: 'Currency', attributes: [ 'code', 'name', 'symbol']});
 
+create (:BusinessEntity {name: 'Lead', attributes: ['name']});
+
 // Relatio1nships
 // --------------
 match (n:BusinessEntity {name: 'FlightReservation'}),
@@ -114,6 +116,10 @@ create (n)-[:BELONGS_TO {name: 'price_local_currency'}]->(n2);
 match (n:BusinessEntity {name: 'FlightReservation'}),
       (n2:BusinessEntity {name: 'Currency'})
 create (n)-[:BELONGS_TO {name: 'paid_price_currency'}]->(n2);
+
+match (n:BusinessEntity {name: 'FlightReservation'}),
+      (n2:BusinessEntity {name: 'Lead'})
+create (n)-[:BELONGS_TO {name: 'lead'}]->(n2);
 
 match (n:Module {name: 'KumquatModel'}), 
       (n2:BusinessEntity {name: 'FlightReservation'})
