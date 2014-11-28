@@ -67,11 +67,6 @@ create (:BusinessEntity {name: 'LineLiquidityAccount', attributes: ['line_type',
 
 create (:BusinessEntity {name: 'LineItem', attributes: ['f_item_gid', 'line_type', 'quantity', 'price', 'discount1', 'discount1_value', 'currency_total_value', 'udf_value1', 'udf_value2', 'udf_value4', 'udf_value5', 'udf_date1', 'udf_date2', 'string_field1', 'string_field2', 'string_field3', 'string_field4', 'string_field5', 'cost_value', 'commission_value', 'comment', 'alternative_comment', 'trade_document_ds_id', 'flight_document_id', 'flight_document', 'flight_refund_id', 'flight_refund']});
 
-// will do
-// 1. order_item associations
-// 2. line item associations
-
-
 // Relationships
 // --------------
 match (n:BusinessEntity {name: 'FlightReservation'}),
@@ -222,6 +217,15 @@ create (n)-[:BELONGS_TO {name: 'currency2'}]->(n2);
 match (n:BusinessEntity {name: 'OrderItem'}),
       (n2:BusinessEntity {name: 'PaymentOrder'})
 create (n)-[:HAS_MANY {name: 'payment_orders'}]->(n2);
+
+// LineItem
+match (n:BusinessEntity {name: 'LineItem'}),
+      (n2:BusinessEntity {name: 'FlightDocument'})
+create (n)-[:BELONGS_TO {name: 'flight_document'}]->(n2);
+
+match (n:BusinessEntity {name: 'LineItem'}),
+      (n2:BusinessEntity {name: 'FlightRefund'})
+create (n)-[:BELONGS_TO {name: 'flight_refund'}]->(n2);
 
 // KumquatModel
 match (n:Module {name: 'KumquatModel'}), 
