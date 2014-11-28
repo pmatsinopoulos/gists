@@ -53,6 +53,8 @@ create (:BusinessEntity {name: 'Gender'});
 
 create (:BusinessEntity {name: 'InvoiceItem', attributes: ['invoice_id', 'ticket_number', 'name', 'carrier', 'routings', 'departure_date', 'return_date', 'price', 'taxes', 'service_fee', 'total_value', 'full_ticket_number', 'discount_value', 'item_description', 'item_description_2', 'hotel_name', 'hotel_address', 'check_in_date', 'check_out_date', 'number_of_nights', 'number_of_rooms', 'qty', 'vat_value', 'net_value', 'payment_method_fee']});
 
+create (:BusinessEntity {name: 'TradeDocumentDs', attributes: ['document_trade', 'document_trade_id', 'flight_reservation', 'trade_account', 'trade_account_id', 'order_item', 'in_expert', 'ad_code', 'skip_price_check', 'debt_payment_method', 'trade_document_ds_type', 'trade_document_ds_type_id', 'sent_for_invoice', 'bad_xml', 'refunds', 'amount_to_refund', 'amount_to_refund_currency_code', 'secondary_amount', 'refund_date', 'reissues', 'cc_to_carrier', 'refund_code', 'service_fee_amount', 'card_clearance_fee_amount', 'web_discount_amount', 'case_entity_id', 'case_entity', 'task_id', 'task']});
+
 // Relationships
 // --------------
 match (n:BusinessEntity {name: 'FlightReservation'}),
@@ -161,6 +163,11 @@ create (n)-[:HAS_MANY {name: 'flight_documents'}]->(n2);
 match (n:BusinessEntity {name: 'Invoice'}),
       (n2:BusinessEntity {name: 'InvoiceItem'})
 create (n)-[:HAS_MANY {name: 'invoice_items'}]->(n2);      
+
+// TradeDocumentDs
+match (n:BusinessEntity {name: 'TradeDocumentDs'}),
+      (n2:BusinessEntity {name: 'OrderItem'})
+create (n)-[:BELONGS_TO {name: 'order_item'}]->(n2);
 
 // KumquatModel
 match (n:Module {name: 'KumquatModel'}), 
