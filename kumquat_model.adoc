@@ -57,6 +57,8 @@ create (:BusinessEntity {name: 'OrderItem', attributes: ['amount', 'amount2', 'c
 
 create (:BusinessEntity {name: 'TradeDocumentDsType', attributes: ['code']});
 
+create (:BusinessEntity {name: 'DocumentTrade', attributes: ['fad_document_type_gid', 'fad_document_series_gid', 'ad_registration_date', 'f_trade_account_gid', 'f_ad_table_field1_code', 'f_ad_table_field2_code', 'f_ad_table_field3_code', 'f_ad_table_field4_code', 'ad_document_state', 'payment_amount', 'f_payment_method_gid', 'ad_string_field1', 'ad_string_field2', 'ad_printed', 'ad_string_field3', 'ad_string_field4', 'ad_string_field5', 'ad_value_field1', 'ad_value_field2', 'ad_flag1', 'ad_flag2', 'ad_flag3', 'ad_flag4', 'f_item_gid', 'ad_alternative_code', 'fad_table_field5_code', 'ad_approval_code', 'trade_document_ds_id']});
+
 // Relationships
 // --------------
 match (n:BusinessEntity {name: 'FlightReservation'}),
@@ -174,6 +176,10 @@ create (n)-[:BELONGS_TO {name: 'order_item'}]->(n2);
 match (n:BusinessEntity {name: 'TradeDocumentDs'}),
       (n2:BusinessEntity {name: 'TradeDocumentDsType'})
 create (n)-[:BELONGS_TO {name: 'trade_document_ds_type'}]->(n2);
+
+match (n:BusinessEntity {name: 'TradeDocumentDs'}),
+      (n2:BusinessEntity {name: 'DocumentTrade'})
+create (n)-[:BELONGS_TO {name: 'document_trade'}]->(n2);
 
 // KumquatModel
 match (n:Module {name: 'KumquatModel'}), 
