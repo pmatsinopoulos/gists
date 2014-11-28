@@ -151,6 +151,12 @@ match (n:BusinessEntity {name: 'FlightPassenger'}),
       (n2:BusinessEntity {name: 'Gender'})
 create (n)-[:BELONGS_TO {name: 'gender'}]->(n2);
 
+match (n:BusinessEntity {name: 'FlightPassenger'}),
+      (n2:BusinessEntity {name: 'FlightDocument'})
+create (n)-[:HAS_MANY {name: 'flight_documents'}]->(n2);
+
+// KumquatModel
+
 match (n:Module {name: 'KumquatModel'}), 
       (n2:BusinessEntity {name: 'FlightReservation'})
 create (n)-[:OWNS]->(n2);
