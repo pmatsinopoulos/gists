@@ -39,67 +39,81 @@ create (:BusinessEntity {name: 'Kumquat::FlightReservationCostBreakDown', attrib
 
 create (:BusinessEntity {name: 'Kumquat::Product', attributes: ['contact', 'details', 'details_id', 'details_type', 'order', 'order_id']});
 
+create (:BusinessEntity {name: 'Currency', attributes: [ 'code', 'name', 'symbol']});
+
 // Relatio1nships
 // --------------
 match (n:BusinessEntity {name: 'Kumquat::FlightReservation'}),
       (n2:BusinessEntity {name: 'Kumquat::FlightTrip'})
-create (n)-[:HAS_MANY]->(n2);
+create (n)-[:HAS_MANY {name: 'flight_trips'}]->(n2);
 
 match (n:BusinessEntity {name: 'Kumquat::FlightReservation'}),
       (n2:BusinessEntity {name: 'Kumquat::FlightPassenger'})
-create (n)-[:HAS_MANY]->(n2);
+create (n)-[:HAS_MANY {name: 'flight_passengers'}]->(n2);
 
 match (n:BusinessEntity {name: 'Kumquat::FlightReservation'}),
       (n2:BusinessEntity {name: 'Kumquat::Note'})
-create (n)-[:HAS_MANY]->(n2);
+create (n)-[:HAS_MANY {name: 'notes'}]->(n2);
 
 match (n:BusinessEntity {name: 'Kumquat::FlightReservation'}),
       (n2:BusinessEntity {name: 'Kumquat::Invoice'})
-create (n)-[:HAS_MANY]->(n2);
+create (n)-[:HAS_MANY {name: 'invoices'}]->(n2);
 
 match (n:BusinessEntity {name: 'Kumquat::FlightReservation'}),
       (n2:BusinessEntity {name: 'Kumquat::TradeDocumentDs'})
-create (n)-[:HAS_MANY]->(n2);
+create (n)-[:HAS_MANY {name: 'trade_document_dses'}]->(n2);
 
 match (n:BusinessEntity {name: 'Kumquat::FlightReservation'}),
       (n2:BusinessEntity {name: 'Kumquat::FlightOriginal'})
-create (n)-[:HAS_MANY]->(n2);
+create (n)-[:HAS_MANY {name: 'flight_originals'}]->(n2);
 
 match (n:BusinessEntity {name: 'Kumquat::FlightReservation'}),
       (n2:BusinessEntity {name: 'Kumquat::PaymentOrder'})
-create (n)-[:HAS_MANY]->(n2);
+create (n)-[:HAS_MANY {name: 'payment_orders'}]->(n2);
 
 match (n:BusinessEntity {name: 'Kumquat::FlightReservation'}),
       (n2:BusinessEntity {name: 'Kumquat::BackToBackPayment'})
-create (n)-[:HAS_MANY]->(n2);
+create (n)-[:HAS_MANY {name: 'back_to_back_payments'}]->(n2);
 
 match (n:BusinessEntity {name: 'Kumquat::FlightReservation'}),
       (n2:BusinessEntity {name: 'Kumquat::PaymentOption'})
-create (n)-[:HAS_MANY]->(n2);
+create (n)-[:HAS_MANY {name: 'payment_options'}]->(n2);
 
 match (n:BusinessEntity {name: 'Kumquat::FlightReservation'}),
       (n2:BusinessEntity {name: 'Kumquat::CommunicationLog'})
-create (n)-[:HAS_MANY]->(n2);
+create (n)-[:HAS_MANY {name: 'communication_logs'}]->(n2);
 
 match (n:BusinessEntity {name: 'Kumquat::FlightReservation'}),
       (n2:BusinessEntity {name: 'Kumquat::TrackingInfo'})
-create (n)-[:HAS_MANY]->(n2);
+create (n)-[:HAS_MANY {name: 'tracking_infos'}]->(n2);
 
 match (n:BusinessEntity {name: 'Kumquat::FlightReservation'}),
       (n2:BusinessEntity {name: 'Kumquat::FlightDocument'})
-create (n)-[:HAS_MANY]->(n2);
+create (n)-[:HAS_MANY {name: 'flight_documents'}]->(n2);
 
 match (n:BusinessEntity {name: 'Kumquat::FlightReservation'}),
       (n2:BusinessEntity {name: 'Kumquat::FlightRefund'})
-create (n)-[:HAS_MANY]->(n2);
+create (n)-[:HAS_MANY {name: 'flight_refunds'}]->(n2);
 
 match (n:BusinessEntity {name: 'Kumquat::FlightReservation'}),
       (n2:BusinessEntity {name: 'Kumquat::FlightReservationCostBreakDown'})
-create (n)-[:HAS_ONE]->(n2);
+create (n)-[:HAS_ONE {name: 'cost_break_down'}]->(n2);
 
 match (n:BusinessEntity {name: 'Kumquat::FlightReservation'}),
       (n2:BusinessEntity {name: 'Kumquat::Product'})
-create (n)-[:HAS_ONE]->(n2);
+create (n)-[:HAS_ONE {name: 'product'}]->(n2);
+
+match (n:BusinessEntity {name: 'Kumquat::FlightReservation'}),
+      (n2:BusinessEntity {name: 'Kumquat::Currency'})
+create (n)-[:BELONGS_TO {name: 'price_currency'}]->(n2);
+
+match (n:BusinessEntity {name: 'Kumquat::FlightReservation'}),
+      (n2:BusinessEntity {name: 'Kumquat::Currency'})
+create (n)-[:BELONGS_TO {name: 'price_local_currency'}]->(n2);
+
+match (n:BusinessEntity {name: 'Kumquat::FlightReservation'}),
+      (n2:BusinessEntity {name: 'Kumquat::Currency'})
+create (n)-[:BELONGS_TO {name: 'paid_price_currency'}]->(n2);
 
 match (n:Module {name: 'KumquatModel'}), 
       (n2:BusinessEntity {name: 'Kumquat::FlightReservation'})
