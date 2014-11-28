@@ -37,6 +37,8 @@ create (:BusinessEntity {name: 'Kumquat::FlightRefund', attributes: ['adjustment
 
 create (:BusinessEntity {name: 'Kumquat::FlightReservationCostBreakDown', attributes: ['flight_reservation', 'flight_reservation_id', 'total_cost', 'total_cost_currency', 'total_cost_currency_id', 'service_fee', 'service_fee_currency', 'service_fee_currency_id', 'credit_card_fee', 'credit_card_fee_currency', 'credit_card_fee_currency_id', 'child_price_without_taxes', 'child_price_without_taxes_currency', 'child_price_without_taxes_currency_id', 'child_taxes_per_person', 'child_taxes_per_person_currency', 'child_taxes_per_person_currency_id', 'child_price_per_person', 'child_price_per_person_currency', 'child_price_per_person_currency_id', 'infant_price_without_taxes', 'infant_price_without_taxes_currency', 'infant_price_without_taxes_currency_id', 'infant_taxes_per_person', 'infant_taxes_per_person_currency', 'infant_taxes_per_person_currency_id', 'infant_price_per_person', 'infant_price_per_person_currency', 'infant_price_per_person_currency_id', 'adult_price_without_taxes', 'adult_price_without_taxes_currency', 'adult_price_without_taxes_currency_id', 'adult_taxes_per_person', 'adult_taxes_per_person_currency', 'adult_taxes_per_person_currency_id', 'adult_price_per_person', 'adult_price_per_person_currency', 'adult_price_per_person_currency_id']});
 
+create (:BusinessEntity {name: 'Kumquat::Product', attributes: ['contact', 'details', 'details_id', 'details_type', 'order', 'order_id']});
+
 // Relatio1nships
 // --------------
 match (n:BusinessEntity {name: 'Kumquat::FlightReservation'}),
@@ -93,6 +95,10 @@ create (n)-[:HAS_MANY]->(n2);
 
 match (n:BusinessEntity {name: 'Kumquat::FlightReservation'}),
       (n2:BusinessEntity {name: 'Kumquat::FlightReservationCostBreakDown'})
+create (n)-[:HAS_ONE]->(n2);
+
+match (n:BusinessEntity {name: 'Kumquat::FlightReservation'}),
+      (n2:BusinessEntity {name: 'Kumquat::Product'})
 create (n)-[:HAS_ONE]->(n2);
 
 match (n:Module {name: 'KumquatModel'}), 
