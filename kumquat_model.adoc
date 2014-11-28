@@ -89,8 +89,9 @@ match (n:BusinessEntity {name: 'Kumquat::FlightReservation'}),
       (n2:BusinessEntity {name: 'Kumquat::FlightRefund'})
 create (n)-[:HAS_MANY]->(n2);
 
-match (n:BusinessEntity), (n2:Module {name: 'KumquatModel'})
-create (n2)-[:IS_COMPOSED_OF]->(n);
+match (n:Module {name: 'KumquatModel'}), 
+      (n2:BusinessEntity {name: 'Kumquat::FlightReservation'})
+create (n)-[:OWNS]->(n2);
 
 // Return all
 // ----------
