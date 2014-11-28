@@ -63,6 +63,8 @@ create (:BusinessEntity {name: 'DocumentCash', attributes: ['fad_document_type_g
 
 create (:BusinessEntity {name: 'TradeAccount', attributes: ['activity_description', 'address1', 'address2', 'alternative_code', 'area', 'code', 'email_address', 'f_city_code', 'f_postal_code', 'fax_number1', 'fax_number2', 'flight_reservation', 'kepyo_status', 'name', 'nature', 'sites_code', 'sites_description', 'string_field1', 'string_field2', 'tax_registration_number', 'telephone1', 'telephone2', 'trade_account_type']});
 
+create (:BusinessEntity {name: 'LineLiquidityAccount', attributes: ['line_type', 'f_liquidity_account_gid', 'liquidity_value', 'line_kind']});
+
 // Relationships
 // --------------
 match (n:BusinessEntity {name: 'FlightReservation'}),
@@ -192,6 +194,10 @@ create (n)-[:HAS_ONE {name: 'document_cash'}]->(n2);
 match (n:BusinessEntity {name: 'TradeDocumentDs'}),
       (n2:BusinessEntity {name: 'TradeAccount'})
 create (n)-[:HAS_ONE {name: 'trade_account'}]->(n2);
+
+match (n:BusinessEntity {name: 'TradeDocumentDs'}),
+      (n2:BusinessEntity {name: 'LineLiquidityAccount'})
+create (n)-[:HAS_ONE {name: 'line_liquidity_account'}]->(n2);
 
 // KumquatModel
 match (n:Module {name: 'KumquatModel'}), 
