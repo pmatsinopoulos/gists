@@ -61,6 +61,8 @@ create (:BusinessEntity {name: 'DocumentTrade', attributes: ['fad_document_type_
 
 create (:BusinessEntity {name: 'DocumentCash', attributes: ['fad_document_type_gid', 'fad_document_series_gid', 'f_ad_table_field4_code', 'ad_registration_date', 'f_trade_account_gid', 'f_trade_account_site_gid', 'payable_amount', 'total_value', 'ad_document_state', 'trade_account_type', 'trade_account_nature', 'ad_reasoning', 'ad_string_field1', 'ad_string_field4', 'ad_approval_code', 'ad_value_field2']});
 
+create (:BusinessEntity {name: 'TradeAccount', attributes: ['activity_description', 'address1', 'address2', 'alternative_code', 'area', 'code', 'email_address', 'f_city_code', 'f_postal_code', 'fax_number1', 'fax_number2', 'flight_reservation', 'kepyo_status', 'name', 'nature', 'sites_code', 'sites_description', 'string_field1', 'string_field2', 'tax_registration_number', 'telephone1', 'telephone2', 'trade_account_type']});
+
 // Relationships
 // --------------
 match (n:BusinessEntity {name: 'FlightReservation'}),
@@ -181,11 +183,15 @@ create (n)-[:BELONGS_TO {name: 'trade_document_ds_type'}]->(n2);
 
 match (n:BusinessEntity {name: 'TradeDocumentDs'}),
       (n2:BusinessEntity {name: 'DocumentTrade'})
-create (n)-[:BELONGS_TO {name: 'document_trade'}]->(n2);
+create (n)-[:HAS_ONE {name: 'document_trade'}]->(n2);
 
 match (n:BusinessEntity {name: 'TradeDocumentDs'}),
       (n2:BusinessEntity {name: 'DocumentCash'})
-create (n)-[:BELONGS_TO {name: 'document_cash'}]->(n2);
+create (n)-[:HAS_ONE {name: 'document_cash'}]->(n2);
+
+match (n:BusinessEntity {name: 'TradeDocumentDs'}),
+      (n2:BusinessEntity {name: 'TradeAccount'})
+create (n)-[:HAS_ONE {name: 'trade_account'}]->(n2);
 
 // KumquatModel
 match (n:Module {name: 'KumquatModel'}), 
