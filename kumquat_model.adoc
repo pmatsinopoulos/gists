@@ -55,6 +55,8 @@ create (:BusinessEntity {name: 'InvoiceItem', attributes: ['invoice_id', 'ticket
 
 create (:BusinessEntity {name: 'OrderItem', attributes: ['amount', 'amount2', 'case_entity', 'case_entity_id', 'currency', 'currency_id', 'currency2', 'currency2_id', 'currency_rate', 'order', 'order_id', 'order_item_type', 'order_item_type_id', 'original', 'receive_payment_task', 'receive_payment_task_id']});
 
+create (:BusinessEntity {name: 'TradeDocumentDsType', attributes: ['code']});
+
 // Relationships
 // --------------
 match (n:BusinessEntity {name: 'FlightReservation'}),
@@ -168,6 +170,10 @@ create (n)-[:HAS_MANY {name: 'invoice_items'}]->(n2);
 match (n:BusinessEntity {name: 'TradeDocumentDs'}),
       (n2:BusinessEntity {name: 'OrderItem'})
 create (n)-[:BELONGS_TO {name: 'order_item'}]->(n2);
+
+match (n:BusinessEntity {name: 'TradeDocumentDs'}),
+      (n2:BusinessEntity {name: 'TradeDocumentDsType'})
+create (n)-[:BELONGS_TO {name: 'trade_document_ds_type'}]->(n2);
 
 // KumquatModel
 match (n:Module {name: 'KumquatModel'}), 
